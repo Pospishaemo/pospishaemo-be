@@ -30,10 +30,12 @@ class TestService {
         }
       }
 
-      return tests.map((test) => ({
-        ...new TestDto(test),
-        answers: test.answers.map((answer) => new AnswerDto(answer)),
-      }));
+      return {
+        questions: tests.map((test) => ({
+          ...new TestDto(test),
+          answers: test.answers.map((answer) => new AnswerDto(answer)),
+        }))
+      };
     } else {
       const availableCountTests = await TestModel.countDocuments({});
       const countTests = 5;
@@ -46,10 +48,12 @@ class TestService {
 
       const tests = await TestModel.find().skip(skipCount).limit(countTests).populate('answers');
 
-      return tests.map((test) => ({
-        ...new TestDto(test),
-        answers: test.answers.map((answer) => new AnswerDto(answer)),
-      }));
+      return {
+        questions: tests.map((test) => ({
+          ...new TestDto(test),
+          answers: test.answers.map((answer) => new AnswerDto(answer)),
+        }))
+      };
     }
   }
 

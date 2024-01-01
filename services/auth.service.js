@@ -90,6 +90,16 @@ class AuthService {
     return new TokenDto(newTokens); // access & refresh token
   }
 
+  async logout(refreshToken) {
+    if (refreshToken == null) {
+      throw AuthenticationError('Refresh token is undefined!');
+    }
+
+    await TokenModel.findOneAndDelete({refreshToken});
+
+    return {}
+  }
+
   async _jwtVerify(refreshToken) {
     return new Promise((resolve, reject) => {
       jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, { id }) => {

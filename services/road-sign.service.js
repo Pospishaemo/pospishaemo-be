@@ -37,6 +37,7 @@ class RoadSignService {
     const roadSignSection = await RoadSignSectionModel.findById(sectionId).populate('paragraphs');
 
     return {
+      id: roadSignSection._id,
       name: roadSignSection.name,
       sectionNumber: roadSignSection.sectionNumber,
       paragraphs: roadSignSection.paragraphs.map((section) => new RoadSignDto(section)),
