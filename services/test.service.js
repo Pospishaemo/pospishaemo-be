@@ -20,6 +20,7 @@ class TestService {
 
       for (let test of tests) {
         await TestModel.create({
+          _id: test._id,
           question: test.question,
           correctAnswer: test.correctAnswer,
           answers: test.answers.map((answer) => answer._id),

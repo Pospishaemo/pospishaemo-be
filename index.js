@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const AuthRouting = require('./routing/auth.routing');
 const ContactRouting = require('./routing/contact.routing');
@@ -12,6 +13,7 @@ const errorHandler = require('./utils/error-handler');
 const app = express();
 const PORT = process.env.PORT || 10000;
 
+app.use(cors())
 app.use(express.json());
 app.use('/api/auth', AuthRouting);
 app.use('/api/contact', ContactRouting);
