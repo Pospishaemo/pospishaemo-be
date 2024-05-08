@@ -116,11 +116,11 @@ class AuthService {
   }
 
   _generateRefreshToken(data) {
-    return jwt.sign(data, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '15d' });
+    return jwt.sign(data, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '30d' });
   }
 
   _generateAccessToken(data) {
-    return jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '2h' });
+    return jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15d' });
   }
 }
 
